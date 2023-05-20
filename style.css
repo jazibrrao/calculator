@@ -1,0 +1,37 @@
+
+#container {
+    margin-left: 25%; 
+    height: 70%;
+    max-width: 50%;
+}
+
+#display {
+    width: 100%;
+    padding: 8%;
+    font-size: 1.2em;
+    text-align: right;
+}
+
+button {
+    width: 25%;
+    padding: 10%;
+}
+
+#zero {
+    width: 37.5%;
+}
+
+#decimal {
+    width: 37.5%;
+}
+
+#clear {
+    width: 75%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
