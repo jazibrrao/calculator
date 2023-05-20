@@ -2,6 +2,8 @@ let a;
 let b;
 let operator;
 const display = document.getElementById("display");
+let displayVal = "";
+const decimalBtn = document.getElementById("decimal");
 const operators = ["+", "-", "/", "*"];
 
 function add(a,b) {
@@ -37,22 +39,65 @@ function operate(operator, a, b) {
     }
 }
 
-function populateDisplay(btn) {
-    display.value += btn.innerText;
+function populateDisplay(input) {
+    //keep track of updates to display
+    displayVal += input;
+    display.value = displayVal;
+}
+
+function displayReset(result) {
+    if(result) {
+        displayVal = result;
+        display.value = result;
+        decimalBtn.disabled = false;
+    }
 }
 
 function clearDisplay() {
     display.value = "";
+    displayVal = "";
+    decimalBtn.disabled = false;
 }
 
 function equals() {
-    //take the display and split into array with operators
-    let e = display.value.split(/(\+|-|\*|\/)/);
-    //solve for 1st 3 items in array
-    a = operate(e[1], e[0], e[2]);
-    //remove 1st 3 items and insert solved number at start of array
-    e.splice(0,3,a);
-    //join the array into a string and update display
-    let newDisplay = e.join('');
-    display.value = newDisplay;
+    // //take the display and split into array with operators
+    // let e = display.value.split(/(\+|-|\*|\/)/);
+    b = displayVal;
+    let result = operate(operator, a, b);
+    displayReset(result);
 }
+
+function populateDigits() {
+    const digitBtns = document.querySelectorAll(".digit");
+    digitBtns.forEach((btn) => {
+        btn.addEventListener("click", (btn) => {
+            populateDisplay(btn.target.value);
+            checkDecimals();
+        })
+    })
+}
+
+function checkOperators() {
+    const operatorBtns = document.querySelectorAll(".operator");
+    operatorBtns.forEach((btn) => {
+        btn.addEventListener("click", (btn) => {
+            operator = btn.target.value;
+            a = displayVal;
+            displayVal = "";
+            decimalBtn.disabled = false;
+        })
+    })
+}
+
+// prevent duplicate decimals from being entered in 1 number
+function checkDecimals() {
+    decimalBtn.addEventListener("click", () => {
+        if(display.value.indexOf(".") >-1) {
+            decimalBtn.disabled = true;
+        }
+    })
+
+}
+
+checkOperators();
+populateDigits();

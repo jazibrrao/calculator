@@ -13,30 +13,30 @@
             <input id="display" value="123456" readonly>
         </div>
         <div class="row">
-            <button id="7" onclick="populateDisplay(this)">7</button>
-            <button id="8" onclick="populateDisplay(this)">8</button>
-            <button id="9" onclick="populateDisplay(this)">9</button>
-            <button id="divide" onclick="populateDisplay(this)">/</button>
+            <button id="7" value="7" class="digit">7</button>
+            <button id="8" value="8" class="digit">8</button>
+            <button id="9" value="9" class="digit">9</button>
+            <button id="divide" value="/" class="operator">/</button>
         </div>
         <div class="row">
-            <button id="4" onclick="populateDisplay(this)">4</button>
-            <button id="5" onclick="populateDisplay(this)">5</button>
-            <button id="6" onclick="populateDisplay(this)">6</button>
-            <button id="multiply" onclick="populateDisplay(this)">*</button>
+            <button id="4" value="4" class="digit">4</button>
+            <button id="5" value="5" class="digit">5</button>
+            <button id="6" value="6" class="digit">6</button>
+            <button id="multiply" value="*" class="operator">*</button>
         </div>
         <div class="row">
-            <button id="1" onclick="populateDisplay(this)">1</button>
-            <button id="2" onclick="populateDisplay(this)">2</button>
-            <button id="3" onclick="populateDisplay(this)">3</button>
-            <button id="subtract" onclick="populateDisplay(this)">-</button>
+            <button id="1" value="1" class="digit">1</button>
+            <button id="2" value="2" class="digit">2</button>
+            <button id="3" value="3" class="digit">3</button>
+            <button id="subtract" value="-" class="operator">-</button>
         </div>
         <div class="row">
-            <button id="0" class="zero" onclick="populateDisplay(this)">0</button>
-            <button id="decimal" onclick="populateDisplay(this)">.</button>
-            <button id="add" onclick="populateDisplay(this)">+</button>
+            <button id="zero" class="digit" value="0">0</button>
+            <button id="decimal" class="digit" value=".">.</button>
+            <button id="add" value="+" class="operator">+</button>
         </div>
         <div class="row">
-            <button id="clear" onclick="clearDisplay()">Clear</button> 
+            <button id="clear" onclick="clearDisplay()">CLEAR</button> 
             <button id="equals" onclick="equals()">=</button>
         </div>    
     </div>
