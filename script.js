@@ -51,7 +51,7 @@ function equals() {
     //solve for 1st 3 items in array
     a = operate(e[1], e[0], e[2]);
     //remove 1st 3 items and insert solved number at start of array
-    numberArray.splice(0,3,a);
+    e.splice(0,3,a);
     //join the array into a string and update display
     let newDisplay = e.join('');
     display.value = newDisplay;
