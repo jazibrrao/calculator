@@ -1,10 +1,9 @@
 let a;
 let b;
 let operator;
-const display = document.getElementById("display");
 let displayVal = "";
+const display = document.getElementById("display");
 const decimalBtn = document.getElementById("decimal");
-const operators = ["+", "-", "/", "*"];
 
 function add(a,b) {
     return Number(a) + Number(b);
@@ -19,7 +18,14 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
-    return a / b;
+    if(b == 0) {
+        alert("Sorry! You can't divide by 0 :(");
+        return "";
+    }
+    else {
+        return a / b;
+    }
+    
 }
 
 function operate(operator, a, b) {
@@ -39,32 +45,31 @@ function operate(operator, a, b) {
     }
 }
 
+function displayReset(result) {
+    displayVal = result;
+    display.value = result;
+    decimalBtn.disabled = false;
+    a = "";
+    b = "";
+    operator = "";
+}
+
 function populateDisplay(input) {
     //keep track of updates to display
     displayVal += input;
     display.value = displayVal;
 }
 
-function displayReset(result) {
-    if(result) {
-        displayVal = result;
-        display.value = result;
-        decimalBtn.disabled = false;
-    }
-}
-
 function clearDisplay() {
-    display.value = "";
-    displayVal = "";
-    decimalBtn.disabled = false;
+    displayReset("");
 }
 
 function equals() {
-    // //take the display and split into array with operators
-    // let e = display.value.split(/(\+|-|\*|\/)/);
     b = displayVal;
-    let result = operate(operator, a, b);
-    displayReset(result);
+    result = operate(operator, a, b);
+    a = result;
+    display.value = result;
+    result = "";
 }
 
 function populateDigits() {
@@ -82,7 +87,25 @@ function checkOperators() {
     operatorBtns.forEach((btn) => {
         btn.addEventListener("click", (btn) => {
             operator = btn.target.value;
-            a = displayVal;
+            if(a) {
+                if(operator = operator){
+                    b = display.value;
+                    result = operate(operator, a, b);
+                    a = result;
+                    result = "";
+                    display.value = a;
+                }
+                else {
+                    b = displayVal;
+                    result = operate(operator, a, b);
+                    a = result;
+                    result = "";
+                    display.value = a;
+                }
+            }
+            else {
+                a = displayVal;
+            }
             displayVal = "";
             decimalBtn.disabled = false;
         })
@@ -96,7 +119,6 @@ function checkDecimals() {
             decimalBtn.disabled = true;
         }
     })
-
 }
 
 checkOperators();
