@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <title>Calculator</title>
 </head>
 <body>
@@ -14,33 +13,33 @@
             <input id="display" value="123456" readonly>
         </div>
         <div class="row">
-            <button id="7">7</button>
-            <button id="8">8</button>
-            <button id="9">9</button>
-            <button id="divide">/</button>
+            <button id="7" onclick="populateDisplay(this)">7</button>
+            <button id="8" onclick="populateDisplay(this)">8</button>
+            <button id="9" onclick="populateDisplay(this)">9</button>
+            <button id="divide" onclick="populateDisplay(this)">/</button>
         </div>
         <div class="row">
-            <button id="4">4</button>
-            <button id="5">5</button>
-            <button id="6">6</button>
-            <button id="multiply">*</button>
+            <button id="4" onclick="populateDisplay(this)">4</button>
+            <button id="5" onclick="populateDisplay(this)">5</button>
+            <button id="6" onclick="populateDisplay(this)">6</button>
+            <button id="multiply" onclick="populateDisplay(this)">*</button>
         </div>
         <div class="row">
-            <button id="1">1</button>
-            <button id="2">2</button>
-            <button id="3">3</button>
-            <button id="subtract">-</button>
+            <button id="1" onclick="populateDisplay(this)">1</button>
+            <button id="2" onclick="populateDisplay(this)">2</button>
+            <button id="3" onclick="populateDisplay(this)">3</button>
+            <button id="subtract" onclick="populateDisplay(this)">-</button>
         </div>
         <div class="row">
-            <button id="zero">0</button>
-            <button id="decimal">.</button>
-            <button id="add">+</button>
+            <button id="0" class="zero" onclick="populateDisplay(this)">0</button>
+            <button id="decimal" onclick="populateDisplay(this)">.</button>
+            <button id="add" onclick="populateDisplay(this)">+</button>
         </div>
         <div class="row">
-            <button id="clear">Clear</button> 
+            <button id="clear" onclick="clearDisplay()">Clear</button> 
             <button id="equals">=</button>
         </div>    
     </div>
-    
+<script src="script.js"></script>
 </body>
 </html>
