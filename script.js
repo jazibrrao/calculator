@@ -1,7 +1,7 @@
 let a;
 let b;
 let operator;
-let displayVal = "";
+let displayVal = ""; //internal value of display we keep for calculations
 const display = document.getElementById("display");
 const decimalBtn = document.getElementById("decimal");
 
@@ -28,6 +28,7 @@ function divide(a,b) {
     
 }
 
+//perform our calculations
 function operate(operator, a, b) {
     switch(operator) {
         case "+":
@@ -45,39 +46,44 @@ function operate(operator, a, b) {
     }
 }
 
-function displayReset(result) {
-    displayVal = result;
-    display.value = result;
-    decimalBtn.disabled = false;
+//keep track of updates to display
+function populateDisplay(input) {
+    displayVal += input;
+    display.value = displayVal;
+}
+
+//clear display and all set variables
+function clearDisplay() {
+    displayVal = "";
+    display.value = "";
+    resetDecimalBtn();
     a = "";
     b = "";
     operator = "";
 }
 
-function populateDisplay(input) {
-    //keep track of updates to display
-    displayVal += input;
-    display.value = displayVal;
-}
-
-function clearDisplay() {
-    displayReset("");
-}
-
 function equals() {
-    b = displayVal;
-    result = operate(operator, a, b);
-    a = result;
-    display.value = result;
-    result = "";
+    if (a != "" && display.value != ""){
+        b = display.value;
+        let result = operate(operator, a, b);
+        display.value = result;
+        displayVal = "";
+        a = "";
+        b = "";
+    }
+    else if (a == "" || b == "") {
+        // do nothing
+        console.log("Not enough vars to calc with");
+    }
 }
 
+//captures button input for display
 function populateDigits() {
     const digitBtns = document.querySelectorAll(".digit");
     digitBtns.forEach((btn) => {
         btn.addEventListener("click", (btn) => {
             populateDisplay(btn.target.value);
-            checkDecimals();
+            checkDecimal();
         })
     })
 }
@@ -86,39 +92,40 @@ function checkOperators() {
     const operatorBtns = document.querySelectorAll(".operator");
     operatorBtns.forEach((btn) => {
         btn.addEventListener("click", (btn) => {
-            operator = btn.target.value;
-            if(a) {
-                if(operator = operator){
-                    b = display.value;
-                    result = operate(operator, a, b);
-                    a = result;
-                    result = "";
-                    display.value = a;
-                }
-                else {
-                    b = displayVal;
-                    result = operate(operator, a, b);
-                    a = result;
-                    result = "";
-                    display.value = a;
-                }
+            let operatorNew = btn.target.value;
+            if (operator == ""){
+                operator = operatorNew;
             }
-            else {
-                a = displayVal;
+            if(a == "") {
+                a = display.value;
+                displayVal = "";
+                operator = operatorNew;
             }
-            displayVal = "";
-            decimalBtn.disabled = false;
+            else if(a != "" && displayVal != "") {
+                b = display.value;
+                let result = operate(operator, a, b);
+                a = result;
+                display.value = result;
+                displayVal = "";
+                operator = operatorNew;
+            }
+            resetDecimalBtn();
         })
     })
 }
 
 // prevent duplicate decimals from being entered in 1 number
-function checkDecimals() {
+function checkDecimal() {
     decimalBtn.addEventListener("click", () => {
         if(display.value.indexOf(".") >-1) {
             decimalBtn.disabled = true;
         }
     })
+}
+
+// enables decimal button
+function resetDecimalBtn() {
+    decimalBtn.disabled = false;
 }
 
 checkOperators();
