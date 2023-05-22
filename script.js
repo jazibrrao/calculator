@@ -14,7 +14,15 @@ function subtract(a,b) {
 }
 
 function multiply(a,b) {
-    return a * b;
+    if(a == "") {
+        return 1 * b;
+    }
+    else if(b == "") {
+        return a * 1;
+    }
+    else {
+        return a * b;
+    }
 }
 
 function divide(a,b) {
@@ -109,6 +117,7 @@ function checkOperators() {
                 displayVal = "";
                 operator = operatorNew;
             }
+            operator = operatorNew;
             resetDecimalBtn();
         })
     })
